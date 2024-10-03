@@ -9,6 +9,7 @@ import puppeteer from "puppeteer";
 const SOURCE = Bun.argv[2];
 const THUMB_WIDTH = 4000;
 const THUMB_HEIGHT = 2000;
+const BENTO_PATH = path.join(process.cwd(), "lib/bento-grid/dist/main.js");
 const CWD = process.cwd();
 
 if (!existsSync("_tmp")) mkdirSync("_tmp");
@@ -18,6 +19,10 @@ if (!SOURCE || typeof SOURCE !== "string")
 
 if (!fs.existsSync(path.join(SOURCE, "video.webm"))) {
   throw new Error("missing valid video");
+}
+
+if (!fs.existsSync(BENTO_PATH)) {
+  throw new Error("missing bento-grid facade in /lib/bento-grid");
 }
 
 const duration =
@@ -122,7 +127,7 @@ Bun.write(
     </div>
 
     <script type="module">
-        ${await Bun.file("lib/bento-grid/dist/main.js").text()}
+        ${await Bun.file(BENTO_PATH).text()}
         new Bento(document.querySelector('.bento'))
     </script>
 </body>
