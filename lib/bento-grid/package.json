@@ -1,0 +1,61 @@
+{
+  "name": "bento-grid",
+  "version": "0.1.1",
+  "private": false,
+  "type": "module",
+  "description": "A simple, small, modern, dependency-free JavaScript bento box grid system.",
+  "bugs": {
+    "url": "https://github.com/mubanga90/bento/issues"
+  },
+  "homepage": "https://github.com/mubanga90/bento#readme",
+  "author": "Douwe Mubanga de Vries",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mubanga90/bento.git"
+  },
+  "keywords": [
+    "bento",
+    "box",
+    "grid"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/main.js",
+      "require": "./dist/main.cjs.js"
+    }
+  },
+  "main": "./dist/main.cjs.js",
+  "module": "./dist/main.js",
+  "typings": "./dist/main.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "watch": "nodemon -w src -e ts css -x  'npm test'",
+    "build": "npm test && vite build --config vite.deploy.config.ts && npm run copy-js-to-docs",
+    "copy-js-to-docs": "cp dist/main.js docs/bento.js",
+    "preview": "vite preview",
+    "test": "tsc && xo --fix && stylelint 'src/**/*.css' --fix",
+    "prepare": "husky",
+    "husky": "tsc && xo && stylelint 'src/**/*.css'"
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/node": "^20.11.19",
+    "autoprefixer": "^10.4.17",
+    "husky": "^9.0.10",
+    "nodemon": "^3.0.3",
+    "postcss": "^8.4.35",
+    "postcss-cli": "^11.0.0",
+    "postcss-load-config": "^5.0.2",
+    "postcss-nested": "^6.0.1",
+    "rollup-plugin-typescript-paths": "^1.5.0",
+    "stylelint": "^16.2.1",
+    "stylelint-config-idiomatic-order": "^10.0.0",
+    "stylelint-config-standard": "^36.0.0",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.8",
+    "xo": "^0.57.0"
+  }
+}
